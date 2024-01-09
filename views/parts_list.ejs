@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../views/components/head'); %>
+  </head>
+  <header><%- include('../views/components/header'); %></header>
+  <body>
+    <main>
+      <h1>Parts List</h1>
+      <section>
+        <ul>
+          <% parts_list.forEach(function(part) { %>
+          <li>
+            <div class="part-card">
+              <ul>
+                <li><strong><%= part.name %></strong></li>
+                <li>
+                  <%= part.vehicle[0].manufacturer + ' ' + part.vehicle[0].model
+                  %>
+                </li>
+                <li><%= part.description %></li>
+                <li><%= '$' + part.price %></li>
+              </ul>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
