@@ -12,7 +12,8 @@ const app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = "insert_your_database_url_here";
+const mongoDB =
+  "mongodb+srv://myAtlasDBUser:dbpassword@cluster0.aezuqkx.mongodb.net/part_store?retryWrites=true&w=majority";
 
 main().catch((err) => console.log(err));
 async function main() {

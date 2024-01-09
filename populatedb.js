@@ -12,7 +12,6 @@ const Part = require("./models/part");
 const Vehicle = require("./models/vehicle");
 
 const categories = [];
-const parts = [];
 const vehicles = [];
 
 const mongoose = require("mongoose");
@@ -27,8 +26,8 @@ async function main() {
   await mongoose.connect(mongoDB);
   console.log("Debug: Should be connected?");
   await createCategories();
-  await createParts();
   await createVehicles();
+  await createParts();
   console.log("Debug: Closing mongoose");
   mongoose.connection.close();
 }
@@ -36,7 +35,8 @@ async function main() {
 async function categoryCreate(index, name, description) {
   const category = new Category({ name: name, description: description });
   await category.save();
-  category[index] = category;
+  //   category[index] = category;
+  categories.push(category);
   console.log(`Added category: ${name}`);
 }
 
@@ -47,7 +47,8 @@ async function vehicleCreate(index, manufacturer, model, year) {
   const vehicle = new Vehicle(vehicleDetail);
 
   await vehicle.save();
-  vehicle[index] = vehicle;
+  //   vehicle[index] = vehicle;
+  vehicles.push(vehicle);
   console.log(`Added vehicle: ${manufacturer} ${model}`);
 }
 
@@ -78,9 +79,21 @@ async function partCreate(
 async function createCategories() {
   console.log("Adding categories");
   await Promise.all([
-    categoryCreate(0, "Maintenance"),
-    categoryCreate(1, "Suspension"),
-    categoryCreate(2, "Brakes"),
+    categoryCreate(
+      0,
+      "Maintenance",
+      "A collection of parts to maintain and service your vehicle."
+    ),
+    categoryCreate(
+      1,
+      "Suspension",
+      "A collection of parts to service your suspension components."
+    ),
+    categoryCreate(
+      2,
+      "Brakes",
+      "A collection of brake parts to keep your vehicle safe on the road."
+    ),
   ]);
 }
 
@@ -98,19 +111,11 @@ async function createVehicles() {
 async function createParts() {
   console.log("Adding parts");
   await Promise.all([
-    bookCreate(
-      0,
-      "The Name of the Wind (The Kingkiller Chronicle, #1)",
-      "I have stolen princesses back from sleeping barrow kings. I burned down the town of Trebon. I have spent the night with Felurian and left with both my sanity and my life. I was expelled from the University at a younger age than most people are allowed in. I tread paths by moonlight that others fear to speak of during day. I have talked to Gods, loved women, and written songs that make the minstrels weep.",
-      "9781473211896",
-      authors[0],
-      [genres[0]]
-    ),
     partCreate(
       0,
       "Control Arm",
       vehicles[0],
-      genres[1],
+      categories[1],
       "Factory replacement for control arm including hardware.",
       "140",
       "4"
@@ -119,7 +124,7 @@ async function createParts() {
       0,
       "Control Arm",
       vehicles[2],
-      genres[1],
+      categories[1],
       "Factory replacement for control arm including hardware.",
       "129",
       "1"
@@ -128,7 +133,7 @@ async function createParts() {
       0,
       "Control Arm",
       vehicles[1],
-      genres[1],
+      categories[1],
       "Factory replacement for control arm including hardware.",
       "149",
       "2"
@@ -137,7 +142,7 @@ async function createParts() {
       0,
       "Upper Ball Joint",
       vehicles[3],
-      genres[1],
+      categories[1],
       "Factory replacement for upper ball joint including hardware.",
       "49",
       "9"
@@ -146,7 +151,7 @@ async function createParts() {
       0,
       "Brake Pads",
       vehicles[3],
-      genres[2],
+      categories[2],
       "Factory replacement brake pads including hardware.",
       "39",
       "14"
@@ -155,7 +160,7 @@ async function createParts() {
       0,
       "Brake Pads",
       vehicles[2],
-      genres[2],
+      categories[2],
       "Factory replacement brake pads including hardware.",
       "39",
       "14"
@@ -164,7 +169,7 @@ async function createParts() {
       0,
       "Brake Pads",
       vehicles[1],
-      genres[2],
+      categories[2],
       "Factory replacement brake pads including hardware.",
       "39",
       "14"
@@ -173,7 +178,7 @@ async function createParts() {
       0,
       "Wix Oil Filter",
       vehicles[1],
-      genres[0],
+      categories[0],
       "Wix oil filter including gasket.",
       "9",
       "44"
@@ -182,7 +187,7 @@ async function createParts() {
       0,
       "Mann Oil Filter",
       vehicles[4],
-      genres[0],
+      categories[0],
       "Mann oil filter including gasket.",
       "14",
       "30"
