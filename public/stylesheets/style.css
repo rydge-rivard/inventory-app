@@ -7,17 +7,22 @@
   list-style: none;
 }
 
+main {
+  padding: 50px;
+}
+
 .nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 48px;
+  padding: 20px 50px;
   background-color: black;
   color: white;
 }
 
 .nav-bar ul {
   display: flex;
+  gap: 4px;
 }
 
 .nav-bar ul li {
@@ -31,4 +36,17 @@
 a {
   text-decoration: none;
   color: white;
+}
+
+.main-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  gap: 16px;
+}
+
+.main-index * {
+  text-align: center;
 }
