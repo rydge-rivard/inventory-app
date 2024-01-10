@@ -6,12 +6,12 @@
   <header><%- include('../views/components/header'); %></header>
   <body>
     <main>
-      <h1>Category List</h1>
+      <h1>Parts by Category</h1>
       <section>
-        <ul>
+        <ul class="part-ul">
           <% category_list.forEach(function(category) { %>
           <li>
-            <div class="category-card">
+            <div class="part-card">
               <ul>
                 <li><strong><%= category.name %></strong></li>
                 <li><%= category.description %></li>

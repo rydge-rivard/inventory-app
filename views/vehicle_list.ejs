@@ -6,20 +6,15 @@
   <header><%- include('../views/components/header'); %></header>
   <body>
     <main>
-      <h1>Parts List</h1>
+      <h1>Parts by Vehicle</h1>
       <section>
         <ul class="part-ul">
-          <% parts_list.forEach(function(part) { %>
+          <% vehicle_list.forEach(function(vehicle) { %>
           <li>
             <div class="part-card">
               <ul>
-                <li><strong><%= part.name %></strong></li>
-                <li>
-                  <%= part.vehicle[0].manufacturer + ' ' + part.vehicle[0].model
-                  %>
-                </li>
-                <li><%= part.description %></li>
-                <li><%= '$' + part.price %></li>
+                <li><strong><%= vehicle.manufacturer %></strong></li>
+                <li><%= vehicle.model %></li>
               </ul>
             </div>
           </li>

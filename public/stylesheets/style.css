@@ -50,3 +50,30 @@ a {
 .main-index * {
   text-align: center;
 }
+
+.part-card,
+.category-card {
+  padding: 16px;
+}
+
+.part-card {
+  border: 1px solid black;
+  width: clamp(350px, 400px, 500px);
+  max-height: 250px;
+}
+
+.part-ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 48px;
+}
+
+.part-ul li {
+  padding: 4px;
+}
+
+h1 {
+  text-align: center;
+}
