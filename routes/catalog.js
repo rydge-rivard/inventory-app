@@ -16,5 +16,6 @@ router.get("/category_list", category_controller.category_list);
 
 /// CATEGORY ROUTES ///
 router.get("/vehicle_list", vehicle_controller.vehicle_list);
+router.get("/vehicle_list/:id", vehicle_controller.vehicle_detail);
 
 module.exports = router;
