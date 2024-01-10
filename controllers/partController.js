@@ -1,5 +1,6 @@
 const Part = require("../models/part");
 const Vehicle = require("../models/vehicle");
+const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
@@ -7,7 +8,10 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.parts_list = asyncHandler(async (req, res, next) => {
-  const allParts = await Part.find({}, "name vehicle description price")
+  const allParts = await Part.find(
+    {},
+    "name vehicle description price number_in_stock"
+  )
     .sort({ name: 1 })
     .populate("vehicle")
     .exec();
@@ -35,5 +39,18 @@ exports.part_detail = asyncHandler(async (req, res, next) => {
   res.render("part_detail", {
     title: part.name,
     part: part,
+  });
+});
+
+exports.part_create = asyncHandler(async (req, res, next) => {
+  const [vehicles, categories] = await Promise.all([
+    Vehicle.find({}).sort({ manufacturer: 1 }).exec(),
+    Category.find({}, "name").sort({ name: 1 }).exec(),
+  ]);
+
+  res.render("part_form", {
+    title: "Create Part",
+    categories: categories,
+    vehicles: vehicles,
   });
 });

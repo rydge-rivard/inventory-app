@@ -16,7 +16,10 @@ exports.vehicle_list = asyncHandler(async (req, res, next) => {
 exports.vehicle_detail = asyncHandler(async (req, res, next) => {
   const [vehicle, parts_list] = await Promise.all([
     Vehicle.findById(req.params.id).exec(),
-    Part.find({ vehicle: req.params.id }, "name description price")
+    Part.find(
+      { vehicle: req.params.id },
+      "name description price number_in_stock"
+    )
       .sort({ name: 1 })
       .exec(),
   ]);

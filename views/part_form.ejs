@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../views/components/head'); %>
+  </head>
+  <header><%- include('../views/components/header'); %></header>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+      <section>
+        <form method="post">
+          <fieldset>
+            <ul>
+              <li>
+                <label for="part-name">*Part Name:</label>
+                <input type="text" id="part-name" aria-required="true" />
+              </li>
+              <li>
+                <label for="inventory">*Inventory:</label>
+                <input type="text" id="inventory" aria-required="true" />
+              </li>
+              <li>
+                <label for="price">*Price:</label>
+                <input type="text" id="price" aria-readonly="true" />
+              </li>
+              <li>
+                <label for="vehicle">Vehicle</label>
+                <select name="vehicle" id="vehicle">
+                  <% vehicles.forEach(function(vehicle) { %>
+                  <option
+                    value="<%= vehicle.manufacturer + ' ' + vehicle.model %>"
+                  >
+                    <%= vehicle.manufacturer + ' ' + vehicle.model %>
+                  </option>
+                  <% }); %>
+                </select>
+              </li>
+              <li>
+                <label for="category">Category</label>
+                <select name="category" id="category">
+                  <% categories.forEach(function(category) { %>
+                  <option value="<%= category.name %>">
+                    <%= category.name %>
+                  </option>
+                  <% }); %>
+                </select>
+              </li>
+            </ul>
+          </fieldset>
+          <button>Submit</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

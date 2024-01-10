@@ -86,3 +86,16 @@ h1 {
 .detail-link:hover {
   text-decoration: underline;
 }
+
+button {
+  background-color: black;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 18px;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 50, 50);
+}

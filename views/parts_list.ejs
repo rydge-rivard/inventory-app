@@ -7,6 +7,9 @@
   <body>
     <main>
       <h1>Parts List</h1>
+      <button onclick="location.href='/catalog/parts_list/create'">
+        Create Part
+      </button>
       <section>
         <ul class="part-ul">
           <% parts_list.forEach(function(part) { %>
@@ -26,6 +29,7 @@
                 </a>
                 <li><%= part.description %></li>
                 <li><%= '$' + part.price %></li>
+                <li><%= 'Inventory: ' + part.number_in_stock %></li>
               </ul>
             </div>
           </li>
