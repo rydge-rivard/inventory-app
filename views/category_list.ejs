@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../views/components/head'); %>
+  </head>
+  <header><%- include('../views/components/header'); %></header>
+  <body>
+    <main>
+      <h1>Category List</h1>
+      <section>
+        <ul>
+          <% category_list.forEach(function(category) { %>
+          <li>
+            <div class="category-card">
+              <ul>
+                <li><strong><%= category.name %></strong></li>
+                <li><%= category.description %></li>
+              </ul>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
