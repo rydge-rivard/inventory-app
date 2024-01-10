@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../views/components/head'); %>
+  </head>
+  <header><%- include('../views/components/header'); %></header>
+  <body>
+    <main>
+      <h1><%= part[0].name %></h1>
+      <section>
+        <ul class="part-ul">
+          <a class="detail-link" href="<%= part[0].vehicle[0].url %>">
+            <li>
+              <%= part[0].vehicle[0].manufacturer + ' ' +
+              part[0].vehicle[0].model %>
+            </li>
+          </a>
+          <a class="detail-link" href="<%= part[0].category.url %>">
+            <li><%= part[0].category.name %></li>
+          </a>
+          <li><%= '$' + part[0].price %></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

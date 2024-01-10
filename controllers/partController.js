@@ -17,3 +17,23 @@ exports.parts_list = asyncHandler(async (req, res, next) => {
     parts_list: allParts,
   });
 });
+
+exports.part_detail = asyncHandler(async (req, res, next) => {
+  const part = await Promise.all([
+    Part.findById(req.params.id)
+      .populate("category")
+      .populate("vehicle")
+      .exec(),
+  ]);
+
+  if (part === null) {
+    const err = new Error("Part not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render("part_detail", {
+    title: part.name,
+    part: part,
+  });
+});

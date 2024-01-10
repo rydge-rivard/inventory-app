@@ -9,6 +9,7 @@ const vehicle_controller = require("../controllers/vehicleController");
 
 router.get("/", part_controller.index);
 router.get("/parts_list", part_controller.parts_list);
+router.get("/parts_list/:id", part_controller.part_detail);
 
 /// CATEGORY ROUTES ///
 router.get("/category_list", category_controller.category_list);

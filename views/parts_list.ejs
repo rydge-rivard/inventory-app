@@ -13,7 +13,11 @@
           <li>
             <div class="part-card">
               <ul>
-                <li><strong><%= part.name %></strong></li>
+                <li>
+                  <a class="detail-link" href="<%= part.url %>"
+                    ><strong><%= part.name %></strong></a
+                  >
+                </li>
                 <li>
                   <%= part.vehicle[0].manufacturer + ' ' + part.vehicle[0].model
                   %>

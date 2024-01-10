@@ -77,3 +77,12 @@ a {
 h1 {
   text-align: center;
 }
+
+.detail-link {
+  color: rgb(197, 89, 89);
+  font-weight: 600;
+}
+
+.detail-link:hover {
+  text-decoration: underline;
+}

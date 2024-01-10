@@ -12,7 +12,7 @@ const PartSchema = new Schema({
 });
 
 PartSchema.virtual("url").get(function () {
-  return `/catalog/part/${this._id}`;
+  return `/catalog/parts_list/${this._id}`;
 });
 
 module.exports = mongoose.model("Part", PartSchema);
