@@ -13,6 +13,7 @@ router.get("/parts_list/:id", part_controller.part_detail);
 
 /// CATEGORY ROUTES ///
 router.get("/category_list", category_controller.category_list);
+router.get("/category_list/:id", category_controller.category_detail);
 
 /// CATEGORY ROUTES ///
 router.get("/vehicle_list", vehicle_controller.vehicle_list);

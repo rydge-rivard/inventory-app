@@ -13,7 +13,9 @@
           <li>
             <div class="part-card">
               <ul>
-                <li><strong><%= category.name %></strong></li>
+                <a class="detail-link" href="<%= category.url %>">
+                  <li><strong><%= category.name %></strong></li>
+                </a>
                 <li><%= category.description %></li>
               </ul>
             </div>

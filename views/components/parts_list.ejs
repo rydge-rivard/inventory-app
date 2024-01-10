@@ -1,0 +1,17 @@
+<ul class="part-ul">
+  <% parts_list.forEach(function(part) { %>
+  <li>
+    <div class="part-card">
+      <ul>
+        <li>
+          <a class="detail-link" href="<%= part.url %>"
+            ><strong><%= part.name %></strong></a
+          >
+        </li>
+        <li><%= part.description %></li>
+        <li><%= '$' + part.price %></li>
+      </ul>
+    </div>
+  </li>
+  <% }); %>
+</ul>

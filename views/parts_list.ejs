@@ -18,10 +18,12 @@
                     ><strong><%= part.name %></strong></a
                   >
                 </li>
-                <li>
-                  <%= part.vehicle[0].manufacturer + ' ' + part.vehicle[0].model
-                  %>
-                </li>
+                <a class="detail-link" href="<%= part.vehicle[0].url %>">
+                  <li>
+                    <%= part.vehicle[0].manufacturer + ' ' +
+                    part.vehicle[0].model %>
+                  </li>
+                </a>
                 <li><%= part.description %></li>
                 <li><%= '$' + part.price %></li>
               </ul>

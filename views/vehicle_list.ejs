@@ -13,8 +13,13 @@
           <li>
             <div class="part-card">
               <ul>
-                <li><strong><%= vehicle.manufacturer %></strong></li>
-                <li><%= vehicle.model %></li>
+                <a class="detail-link" href="<%= vehicle.url %>">
+                  <li>
+                    <strong
+                      ><%= vehicle.manufacturer + ' ' + vehicle.model%></strong
+                    >
+                  </li>
+                </a>
               </ul>
             </div>
           </li>
