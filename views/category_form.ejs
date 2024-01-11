@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../views/components/head'); %>
+  </head>
+  <header><%- include('../views/components/header'); %></header>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+      <section class="form-wrapper">
+        <form method="post">
+          <fieldset>
+            <ul>
+              <li>
+                <label for="name">*Category Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value="<%= category === undefined ? '' : category.name %>"
+                />
+              </li>
+              <li>
+                <label for="descr">*Description:</label>
+                <input
+                  type="text"
+                  id="descr"
+                  name="descr"
+                  value="<%= category === undefined ? '' : category.description %>"
+                />
+              </li>
+            </ul>
+          </fieldset>
+          <% if(errors){ %>
+          <ul>
+            <% errors.forEach(function(err) { %>
+            <li class="err"><%= '*' + err.msg %></li>
+          </ul>
+          <% })} %>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
