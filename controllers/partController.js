@@ -74,7 +74,6 @@ exports.part_create_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(req.body);
     const part = new Part({
       name: req.body.part_name,
       vehicle: req.body.vehicle,
@@ -89,7 +88,6 @@ exports.part_create_post = [
         Vehicle.find().sort({ manufacturer: 1 }).exec(),
         Category.find().sort({ name: 1 }).exec(),
       ]);
-      console.log("error");
 
       res.render("part_form", {
         title: "Create Part",

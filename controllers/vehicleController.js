@@ -1,6 +1,7 @@
 const Vehicle = require("../models/vehicle");
 const Part = require("../models/part");
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 
 exports.vehicle_list = asyncHandler(async (req, res, next) => {
   const allVehicles = await Vehicle.find({}, "manufacturer model year")
@@ -36,3 +37,46 @@ exports.vehicle_detail = asyncHandler(async (req, res, next) => {
     parts_list: parts_list,
   });
 });
+
+exports.vehicle_create_get = asyncHandler(async (req, res, next) => {
+  res.render("vehicle_form", {
+    title: "Create Vehicle",
+    vehicle: undefined,
+    errors: [],
+  });
+});
+
+exports.vehicle_create_post = [
+  body("manufacturer", "Manufacturer must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("model", "Model must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("year", "Year must not be empty.")
+    .trim()
+    .isISO8601("yyyy-mm-dd")
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const vehicle = new Vehicle({
+      manufacturer: req.body.manufacturer,
+      model: req.body.model,
+      year: req.body.year,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("vehicle_form", {
+        title: "Create Vehicle",
+        errors: errors.array(),
+        vehicle: vehicle,
+      });
+    } else {
+      await vehicle.save();
+      res.redirect(vehicle.url);
+    }
+  }),
+];

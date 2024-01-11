@@ -58,7 +58,6 @@ exports.category_create_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(req.body);
     const category = new Category({
       name: req.body.name,
       description: req.body.descr,
