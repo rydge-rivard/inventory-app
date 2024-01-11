@@ -142,3 +142,8 @@ fieldset ul li {
   align-items: center;
   padding: 36px;
 }
+
+.err {
+  color: red;
+  font-weight: 600;
+}

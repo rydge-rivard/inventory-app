@@ -6,7 +6,7 @@ const PartSchema = new Schema({
   name: { type: String, required: true },
   vehicle: [{ type: Schema.Types.ObjectId, ref: "Vehicle", required: true }],
   category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
-  description: { type: String, required: true },
+  description: { type: String },
   price: { type: Number, required: true },
   number_in_stock: { type: Number, required: true },
 });

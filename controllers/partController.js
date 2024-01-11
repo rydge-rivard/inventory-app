@@ -2,6 +2,7 @@ const Part = require("../models/part");
 const Vehicle = require("../models/vehicle");
 const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 
 exports.index = asyncHandler(async (req, res, next) => {
   res.render("index", { title: "Rydge's Auto Parts" });
@@ -42,7 +43,7 @@ exports.part_detail = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.part_create = asyncHandler(async (req, res, next) => {
+exports.part_create_get = asyncHandler(async (req, res, next) => {
   const [vehicles, categories] = await Promise.all([
     Vehicle.find({}).sort({ manufacturer: 1 }).exec(),
     Category.find({}, "name").sort({ name: 1 }).exec(),
@@ -52,5 +53,54 @@ exports.part_create = asyncHandler(async (req, res, next) => {
     title: "Create Part",
     categories: categories,
     vehicles: vehicles,
+    errors: [],
+    part: undefined,
   });
 });
+
+exports.part_create_post = [
+  body("part_name", "Part Name must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("inventory", "Inventory must greater than or equal to zero.")
+    .trim()
+    .isNumeric({ min: 0 })
+    .escape(),
+  body("price", "Price must greater than or equal to zero.")
+    .trim()
+    .isNumeric({ min: 0 })
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(req.body);
+    const part = new Part({
+      name: req.body.part_name,
+      vehicle: req.body.vehicle,
+      category: req.body.category,
+      description: req.body.descr,
+      price: req.body.price,
+      number_in_stock: req.body.inventory,
+    });
+
+    if (!errors.isEmpty()) {
+      const [vehicles, categories] = await Promise.all([
+        Vehicle.find().sort({ manufacturer: 1 }).exec(),
+        Category.find().sort({ name: 1 }).exec(),
+      ]);
+      console.log("error");
+
+      res.render("part_form", {
+        title: "Create Part",
+        categories: categories,
+        vehicles: vehicles,
+        errors: errors.array(),
+        part: part,
+      });
+    } else {
+      await part.save();
+      res.redirect(part.url);
+    }
+  }),
+];
