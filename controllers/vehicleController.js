@@ -94,3 +94,53 @@ exports.vehicle_delete_post = asyncHandler(async (req, res, next) => {
   await Vehicle.findByIdAndDelete(req.body.vehicleId);
   res.redirect("/catalog/vehicle_list");
 });
+
+exports.vehicle_update_get = asyncHandler(async (req, res, next) => {
+  const vehicle = await Vehicle.findById(req.params.id).exec();
+
+  res.render("vehicle_form", {
+    title: "Edit Vehicle",
+    vehicle: vehicle,
+    errors: [],
+  });
+});
+
+exports.vehicle_update_post = [
+  body("manufacturer", "Manufacturer must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("model", "Model must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("year", "Year must not be empty.")
+    .trim()
+    .isISO8601("yyyy-mm-dd")
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const vehicle = new Vehicle({
+      manufacturer: req.body.manufacturer,
+      model: req.body.model,
+      year: req.body.year,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("vehicle_form", {
+        title: "Edit Vehicle",
+        errors: errors.array(),
+        vehicle: vehicle,
+      });
+    } else {
+      const updatedVehicle = await Vehicle.findByIdAndUpdate(
+        req.params.id,
+        vehicle,
+        {}
+      );
+      res.redirect(vehicle.url);
+    }
+  }),
+];

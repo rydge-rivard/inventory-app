@@ -26,5 +26,7 @@ router.post("/vehicle_list/create", vehicle_controller.vehicle_create_post);
 router.get("/vehicle_list/:id", vehicle_controller.vehicle_detail);
 router.get("/vehicle_list/:id/delete", vehicle_controller.vehicle_delete_get);
 router.post("/vehicle_list/:id/delete", vehicle_controller.vehicle_delete_post);
+router.get("/vehicle_list/:id/update", vehicle_controller.vehicle_update_get);
+router.post("/vehicle_list/:id/update", vehicle_controller.vehicle_update_post);
 
 module.exports = router;
