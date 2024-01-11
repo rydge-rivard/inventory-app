@@ -80,3 +80,17 @@ exports.vehicle_create_post = [
     }
   }),
 ];
+
+exports.vehicle_delete_get = asyncHandler(async (req, res, next) => {
+  const vehicle = await Vehicle.findById(req.params.id).exec();
+
+  res.render("vehicle_delete", {
+    title: "Delete Vehicle",
+    vehicle: vehicle,
+  });
+});
+
+exports.vehicle_delete_post = asyncHandler(async (req, res, next) => {
+  await Vehicle.findByIdAndDelete(req.body.vehicleId);
+  res.redirect("/catalog/vehicle_list");
+});

@@ -147,3 +147,18 @@ fieldset ul li {
   color: red;
   font-weight: 600;
 }
+
+.hidden {
+  display: none;
+}
+
+.center-text {
+  text-align: center;
+  padding: 12px;
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

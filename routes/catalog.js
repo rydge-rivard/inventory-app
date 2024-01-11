@@ -19,10 +19,12 @@ router.get("/category_list/create", category_controller.category_create_get);
 router.post("/category_list/create", category_controller.category_create_post);
 router.get("/category_list/:id", category_controller.category_detail);
 
-/// CATEGORY ROUTES ///
+/// VEHICLE ROUTES ///
 router.get("/vehicle_list", vehicle_controller.vehicle_list);
 router.get("/vehicle_list/create", vehicle_controller.vehicle_create_get);
 router.post("/vehicle_list/create", vehicle_controller.vehicle_create_post);
 router.get("/vehicle_list/:id", vehicle_controller.vehicle_detail);
+router.get("/vehicle_list/:id/delete", vehicle_controller.vehicle_delete_get);
+router.post("/vehicle_list/:id/delete", vehicle_controller.vehicle_delete_post);
 
 module.exports = router;
