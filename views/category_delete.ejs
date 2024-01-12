@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../views/components/head'); %>
+  </head>
+  <header><%- include('../views/components/header'); %></header>
+  <body>
+    <main>
+      <h1><%= 'Delete ' + category.name + '?' %></h1>
+      <p class="center-text">Are you sure you want to delete this Category?</p>
+      <div class="flex-wrapper">
+        <form method="post">
+          <fieldset class="hidden">
+            <input
+              hidden
+              type="text"
+              name="categoryId"
+              value="<%= category._id %>"
+            />
+          </fieldset>
+          <button>Delete</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -8,6 +8,9 @@
     <main>
       <h1><%= category.name %></h1>
       <section><%- include('../views/components/parts_list'); %></section>
+      <a class="detail-link" href="<%= category.url+'/delete' %>">
+        <p class="center-text">Delete Category</p>
+      </a>
     </main>
   </body>
 </html>

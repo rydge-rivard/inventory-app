@@ -75,3 +75,17 @@ exports.category_create_post = [
     }
   }),
 ];
+
+exports.category_delete_get = asyncHandler(async (req, res, next) => {
+  const category = await Category.findById(req.params.id).exec();
+
+  res.render("category_delete", {
+    title: "Delete Category",
+    category: category,
+  });
+});
+
+exports.category_delete_post = asyncHandler(async (req, res, next) => {
+  const category = await Category.findByIdAndDelete(req.body.categoryId).exec();
+  res.redirect("/catalog/category_list");
+});

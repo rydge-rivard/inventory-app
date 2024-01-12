@@ -18,6 +18,14 @@ router.get("/category_list", category_controller.category_list);
 router.get("/category_list/create", category_controller.category_create_get);
 router.post("/category_list/create", category_controller.category_create_post);
 router.get("/category_list/:id", category_controller.category_detail);
+router.get(
+  "/category_list/:id/delete",
+  category_controller.category_delete_get
+);
+router.post(
+  "/category_list/:id/delete",
+  category_controller.category_delete_post
+);
 
 /// VEHICLE ROUTES ///
 router.get("/vehicle_list", vehicle_controller.vehicle_list);
