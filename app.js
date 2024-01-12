@@ -6,18 +6,17 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const catalogRouter = require("./routes/catalog");
+require("dotenv").config();
 
 const app = express();
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB =
-  "mongodb+srv://myAtlasDBUser:dbpassword@cluster0.aezuqkx.mongodb.net/part_store?retryWrites=true&w=majority";
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect(process.env.MONGO_DB);
 }
 
 // view engine setup
